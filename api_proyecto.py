@@ -58,6 +58,21 @@ def ver_datos():
         } for x in datos])
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route("/datosHtml")
+def datos_html():
+    try:
+        conn = psycopg2.connect(URL)
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM Sensores1 ORDER BY fecha DESC LIMIT 100")
+        datos = cursor.fetchall()
+        cursor.close()
+        conn.close()
+
+        return render_template("tabla_datos.html", datos=datos)
+    except Exception as e:
+        return f"Error: {e}"
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))

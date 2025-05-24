@@ -1,25 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Datos de Sensores</title>
     <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background: #f2f2f2;
-        }
+        body { font-family: sans-serif; padding: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        th { background: #eee; }
     </style>
 </head>
 <body>
-    <h1>Datos de Sensores</h1>
+    <h1>📊 Datos de Sensores</h1>
     <table>
         <thead>
             <tr>
@@ -37,7 +29,7 @@
             {% for fila in datos %}
             <tr>
                 <td>{{ fila[0] }}</td>
-                <td>{{ fila[1] }}</td>
+                <td>{{ fila[1].strftime("%Y-%m-%d %H:%M:%S") }}</td>
                 <td>{{ fila[2] }}</td>
                 <td>{{ fila[3] }}</td>
                 <td>{{ fila[4] }}</td>

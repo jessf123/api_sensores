@@ -8,10 +8,17 @@ URL = "postgresql://jesse:NuIyzDWW4PVYHCF7HVRjPrKdMdzGbdi0@dpg-d0d4vq15pdvs73f7o
 
 app = Flask(__name__)
 
-@app.route("/")
-def introduccion():
-    return "Esta es una API para mi estación meteorológica"
+@app.route("/datosHtml")
+def datos_html():
+    conn = psycopg2.connect(URL)
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Sensores1 ORDER BY fecha DESC LIMIT 100")  # últimos 100 registros
+    datos = cursor.fetchall()
+    cursor.close()
+    conn.close()
 
+    # Pasamos la lista de datos al template
+    return render_template("tabla_datos.html", datos=datos)
 # Endpoint para recibir datos desde el ESP32
 @app.route("/RecibirDatos", methods=["POST"])
 def recibir_datos_sensores():

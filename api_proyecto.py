@@ -65,9 +65,24 @@ def datos_html():
         conn = psycopg2.connect(URL)
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM Sensores1 ORDER BY fecha DESC LIMIT 100")
-        datos = cursor.fetchall()
+        filas = cursor.fetchall()
         cursor.close()
         conn.close()
+
+        # Convertimos cada fila en un diccionario con texto interpretado
+        datos = []
+        for fila in filas:
+            id_, fecha, gas, luz, lluvia, humedad_suelo, temp, hum = fila
+            datos.append({
+                "id": id_,
+                "fecha": fecha.strftime("%Y-%m-%d %H:%M:%S"),
+                "aire": "Contaminado" if gas > 2000 else "Aceptable",
+                "luz": "Está oscuro" if luz < 1000 else "Está claro",
+                "lluvia": "Está lloviendo" if lluvia < 2000 else "No hay lluvia",
+                "humedad_suelo": round(humedad_suelo, 1),
+                "temp": temp,
+                "hum": hum
+            })
 
         return render_template("tabla_datos.html", datos=datos)
     except Exception as e:

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Datos de Sensores</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Datos de Sensores</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Gas</th>
+                <th>Luz</th>
+                <th>Lluvia</th>
+                <th>Humedad Suelo (%)</th>
+                <th>Temperatura (°C)</th>
+                <th>Humedad Ambiente (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in datos %}
+            <tr>
+                <td>{{ fila[0] }}</td>
+                <td>{{ fila[1] }}</td>
+                <td>{{ fila[2] }}</td>
+                <td>{{ fila[3] }}</td>
+                <td>{{ fila[4] }}</td>
+                <td>{{ "%.1f"|format(fila[5]) }}</td>
+                <td>{{ fila[6] }}</td>
+                <td>{{ fila[7] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

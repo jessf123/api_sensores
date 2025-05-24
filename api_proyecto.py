@@ -18,7 +18,7 @@ def datos_html():
     conn.close()
 
     # Pasamos la lista de datos al template
-    return render_template("tabla_datos.html", datos=datos)
+    return render_template("datos.html", datos=datos)
 # Endpoint para recibir datos desde el ESP32
 @app.route("/RecibirDatos", methods=["POST"])
 def recibir_datos_sensores():

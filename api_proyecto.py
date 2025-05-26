@@ -76,7 +76,7 @@ def datos_html():
             datos.append({
                 "id": id_,
                 "fecha": fecha.strftime("%Y-%m-%d %H:%M:%S"),
-                "aire": "Aceptable" if gas < 2000 else "Contaminado",
+                "aire": "Contaminado" if gas > 5100 else "Aceptable",
                 "luz": "Está oscuro" if luz < 1000 else "Está claro",
                 "lluvia": "Está lloviendo" if lluvia < 2000 else "No hay lluvia",
                 "humedad_suelo": round(humedad_suelo, 1),

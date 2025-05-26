@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def introduccion():
-    return "Esta es una api de mi estacion meteorologica"
+    return "Esta es una api de mi estacion meteorologica, equipo cool xd"
 
 @app.route("/RecibirDatos", methods=["POST"])
 def recibir_datos_sensores():
@@ -69,7 +69,7 @@ def datos_html():
         cursor.close()
         conn.close()
 
-        # Convertimos cada fila en un diccionario con texto interpretado
+        
         datos = []
         for fila in filas:
             id_, fecha, gas, luz, lluvia, humedad_suelo, temp, hum = fila

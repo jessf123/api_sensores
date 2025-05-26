@@ -34,4 +34,4 @@ conn.commit()
 cursor.close()
 conn.close()
 
-print("✅ Tablas creadas correctamente.")
+print(" Tablas creadas correctamente.")
